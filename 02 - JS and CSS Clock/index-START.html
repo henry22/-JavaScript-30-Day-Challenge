@@ -72,6 +72,18 @@
 
   <script>
 
+  let secondHand = document.querySelector('.second-hand');
+
+  function clockHandRotate() {
+    const time = new Date();
+    const seconds = time.getSeconds();
+    const secondsDegree = (seconds / 60) * 360;
+
+    secondHand.style.transform = `rotate(${secondsDegree}deg)`;
+
+  }
+
+  setInterval(clockHandRotate, 1000);
 
   </script>
 </body>
