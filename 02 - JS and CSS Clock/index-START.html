@@ -73,23 +73,33 @@
       left: 30px;
     }
 
+    .hour-hand {
+      width: 30%;
+      left: 60px;
+    }
+
   </style>
 
   <script>
 
   const secondHand = document.querySelector('.second-hand');
   const minuteHand = document.querySelector('.min-hand');
+  const hourHand = document.querySelector('.hour-hand');
 
   function clockHandRotate() {
     const time = new Date();
     const seconds = time.getSeconds();
-    const secondsDegree = (seconds / 60) * 360 + 90;
+    const secondsDegree = ((seconds / 60) * 360) + 90;
     const minutes = time.getMinutes();
-    const minutesDegree = (minutes / 60) * 360 + 90;
+    const minutesDegree = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+    const hours = time.getHours();
+    const hoursDegree = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+
+    console.log(secondsDegree);
 
     secondHand.style.transform = `rotate(${secondsDegree}deg)`;
     minuteHand.style.transform = `rotate(${minutesDegree}deg)`;
-
+    hourHand.style.transform = `rotate(${hoursDegree}deg)`;
   }
 
   setInterval(clockHandRotate, 1000);
