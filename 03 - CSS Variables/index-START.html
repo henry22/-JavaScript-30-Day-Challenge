@@ -65,6 +65,7 @@
   const inputs = document.querySelectorAll('input');
 
   inputs.forEach(input => input.addEventListener('change', updateProp));
+  inputs.forEach(input => input.addEventListener('mousemove', updateProp));
 
   function updateProp() {
     const suffix = this.dataset.sizing || '';
