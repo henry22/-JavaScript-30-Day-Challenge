@@ -73,6 +73,14 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const result8 = data.reduce((sum, item) => {
+      if(!sum[item]) {
+        sum[item] = 0;
+      }
+      sum[item]++;
+      return sum;
+    }, {});
+    console.log(result8);
 
   </script>
 </body>
