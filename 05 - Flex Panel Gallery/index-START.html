@@ -43,6 +43,9 @@
       background-size:cover;
       background-position:center;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
 
@@ -58,6 +61,22 @@
       transition:transform 0.5s;
     }
 
+    .panel > *:first-child {
+      transform: translateY(-100%);
+    }
+
+    .panel.active-open > *:first-child {
+      transform: translateY(0);
+    }
+
+    .panel > *:last-child {
+      transform: translateY(100%);
+    }
+
+    .panel.active-open > *:last-child {
+      transform: translateY(0);
+    }
+
     .panel p {
       text-transform: uppercase;
       font-family: 'Amatic SC', cursive;
@@ -70,6 +89,7 @@
 
     .panel.open {
       font-size:40px;
+      flex: 5;
     }
 
   </style>
@@ -105,6 +125,20 @@
 
   <script>
 
+  const panels = document.querySelectorAll('.panel');
+
+  panels.forEach(panel => panel.addEventListener('click', open));
+  panels.forEach(panel => panel.addEventListener('transitionend', activeOpen));
+
+  function open() {
+    this.classList.toggle('open');
+  }
+
+  function activeOpen(e) {
+    if(e.propertyName === 'flex-grow') {
+      this.classList.toggle('active-open');
+    }
+  }
   </script>
 
 
