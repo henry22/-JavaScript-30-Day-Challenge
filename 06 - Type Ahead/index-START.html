@@ -31,14 +31,18 @@ function matchData(wordsToMatch, cities) {
 }
 
 function displayMatches() {
-  const matchCities = matchData(this.value, cities);
+  const matchPlaces = matchData(this.value, cities);
 
-  const displayCities =  matchCities.map(matchCity =>
-    `<li>
-      <span>${matchCity.city}, ${matchCity.state}</span>
-      <span class="population">${matchCity.population}</span>
-    </li>`
-  ).join('');
+  const displayCities =  matchPlaces.map(matchPlace => {
+    let regexp = new RegExp(this.value, 'gi');
+    const hilightCity = matchPlace.city.replace(regexp, `<span class="hl">${this.value}</span>`);
+    const hilightState = matchPlace.state.replace(regexp, `<span class="hl">${this.value}</span>`);
+
+    return `<li>
+              <span>${hilightCity}, ${hilightState}</span>
+              <span class="population">${matchPlace.population}</span>
+            </li>`
+  }).join('');
 
   suggestions.innerHTML = displayCities;
 }
