@@ -30,6 +30,24 @@ function matchData(wordsToMatch, cities) {
   });
 }
 
+function displayMatches() {
+  const matchCities = matchData(this.value, cities);
+
+  const displayCities =  matchCities.map(matchCity =>
+    `<li>
+      <span>${matchCity.city}, ${matchCity.state}</span>
+      <span class="population">${matchCity.population}</span>
+    </li>`
+  ).join('');
+
+  suggestions.innerHTML = displayCities;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
 
 </script>
   </body>
