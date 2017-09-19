@@ -30,6 +30,10 @@ function matchData(wordsToMatch, cities) {
   });
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function displayMatches() {
   const matchPlaces = matchData(this.value, cities);
 
@@ -40,7 +44,7 @@ function displayMatches() {
 
     return `<li>
               <span>${hilightCity}, ${hilightState}</span>
-              <span class="population">${matchPlace.population}</span>
+              <span class="population">${numberWithCommas(matchPlace.population)}</span>
             </li>`
   }).join('');
 
