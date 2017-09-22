@@ -18,28 +18,56 @@
     }
 
     // Regular
+    console.log('regular debug');
 
     // Interpolated
+    console.log('debug %s', 'this is a string');
 
     // Styled
+    console.log('%c debug change the style', 'font-size: 30px');
 
     // warning!
+    console.warn('warning ~');
 
     // Error :|
+    console.error('error ~');
 
     // Info
+    console.info('this is the info');
 
     // Testing
+    console.assert(1 !== 1, 'this is false');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 4} dog's years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('num1');
+    console.count('num1');
+    console.count('num2');
+    console.count('num1');
+    console.count('num2');
 
     // timing
+    console.time('fetching data');
+    fetch('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json')
+      .then(response => response.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
 
   </script>
 </body>
