@@ -60,8 +60,19 @@
 
     const slideImages = document.querySelectorAll('.slide-in');
 
-    function checkScroll(e) {
-      console.count(e);
+    function checkScroll() {
+      slideImages.forEach(slideImage => {
+        const scrollHalf = (window.scrollY + window.innerHeight) - slideImage.height / 2;
+        const imageBottom = slideImage.offsetTop + slideImage.height;
+        const isHalfShown = scrollHalf > slideImage.offsetTop;
+        const isNotScrollPast = window.scrollY < imageBottom;
+
+        if(isHalfShown && isNotScrollPast) {
+          slideImage.classList.add('active');
+        } else {
+          slideImage.classList.remove('active');
+        }
+      })
     }
 
     window.addEventListener('scroll', debounce(checkScroll));
