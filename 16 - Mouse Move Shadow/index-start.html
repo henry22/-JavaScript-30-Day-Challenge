@@ -22,10 +22,10 @@
 
   .hero {
     min-height: 100vh;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color: black;
   }
 
   h1 {
@@ -35,6 +35,35 @@
   </style>
 
 <script>
+
+const hero = document.querySelector('.hero');
+const text = hero.querySelector('h1');
+const shadowDistance = 100;
+
+function dropShadow(e) {
+  const width = this.offsetWidth;
+  const height = this.offsetHeight;
+  let x = e.offsetX;
+  let y = e.offsetY;
+
+  if(this !== e.target) {
+    x = x + e.target.offsetLeft;
+    y = y + e.target.offsetTop;
+  }
+
+  const shadowX = Math.round((x / width * shadowDistance) - (shadowDistance / 2));
+  const shadowY = Math.round((y / height * shadowDistance) - (shadowDistance / 2));
+
+  text.style.textShadow = `
+    ${shadowX}px ${shadowY}px 0 rgba(0,255,255,0.7),
+    ${shadowX * -1}px ${shadowY}px 0 rgba(255,0,255,0.7),
+    ${shadowY}px ${shadowX * -1}px 0 rgba(255,255,0,0.7),
+    ${shadowY * -1}px ${shadowX * -1}px 0 rgba(0,255,0,0.7)
+  `;
+}
+
+hero.addEventListener('mousemove', dropShadow);
+
 </script>
 </body>
 </html>
