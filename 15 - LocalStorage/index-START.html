@@ -56,7 +56,19 @@
     }).join('');
   }
 
+  function toggleClick(e) {
+    const itemIndex = e.target.dataset.index;
+
+    if(!e.target.matches('input')) { return; }
+
+    items[itemIndex].done = !items[itemIndex].done;
+
+    localStorage.setItem('items', JSON.stringify(items));
+    showItemList(items, itemsList);
+  }
+
   addItems.addEventListener('submit', addItemList);
+  itemsList.addEventListener('click', toggleClick);
 
   showItemList(items, itemsList);
 
