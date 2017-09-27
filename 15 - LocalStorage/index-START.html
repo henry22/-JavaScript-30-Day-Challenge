@@ -30,9 +30,35 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItemList(e) {
+    e.preventDefault();
+
+    const text = (this.querySelector('[name="item"]')).value;
+    const item = {
+      text,
+      done: false
+    };
+
+    items.push(item);
+    showItemList(items, itemsList);
+    addItems.reset();
+  }
+
+  function showItemList(plates = [], plateList) {
+    plateList.innerHTML = plates.map((plate, i) => {
+      return `
+        <li>
+          <input type="checkbox" data-index="${i}" id="item${i}" ${plate.done ? 'checked' : ''}/>
+          <label for="item${i}">${plate.text}</label>
+        </li>
+      `;
+    }).join('');
+  }
+
+  addItems.addEventListener('submit', addItemList);
+
 </script>
 
 
 </body>
 </html>
-
